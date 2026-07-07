@@ -2,14 +2,15 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/Button";
 
 const Hero = () => {
   return (
     <section className="relative h-[90vh] flex items-center overflow-hidden">
-      {/* Background with soft gradient/texture */}
-      <div className="absolute inset-0 bg-slate-900/95 z-0">
-        <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-secondary/20 to-transparent"></div>
+      {/* Background with soft red/pink gradient */}
+      <div className="absolute inset-0 bg-[#fff5f5] z-0">
+        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/20 to-transparent"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -21,7 +22,7 @@ const Hero = () => {
           >
             <h1 className="text-5xl md:text-7xl font-serif font-bold text-foreground leading-tight mb-6">
               Beautiful Nails. <br />
-              <span className="text-primary-foreground italic font-light">Professional Care.</span>
+              <span className="text-secondary italic font-light">Professional Care.</span>
             </h1>
           </motion.div>
 
@@ -31,26 +32,20 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-lg md:text-xl font-sans text-foreground/70 mb-10 leading-relaxed"
           >
-            Experience the ultimate in beauty artistry and luxury treatments. Our expert technicians are dedicated to making you look your absolute best in a serene and elegant environment.
+            Experience the ultimate in beauty artistry and luxury treatments. Our expert technicians are dedicated to making you look your absolute best in a serene environment.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6"
+            className="flex flex-col sm:flex-row gap-4"
           >
-            <Link
-              href="/book"
-              className="bg-secondary text-secondary-foreground px-10 py-4 rounded-sm font-sans font-bold uppercase tracking-[0.2em] text-sm hover:bg-secondary/90 transition-all shadow-lg text-center"
-            >
-              Book Now
+            <Link href="/book">
+              <Button size="lg" variant="secondary">Book Now</Button>
             </Link>
-            <Link
-              href="/services"
-              className="bg-accent text-foreground border border-accent/50 px-10 py-4 rounded-sm font-sans font-bold uppercase tracking-[0.2em] text-sm hover:bg-accent/80 transition-all text-center"
-            >
-              View Services
+            <Link href="/services">
+              <Button size="lg" variant="outline">View Services</Button>
             </Link>
           </motion.div>
         </div>

@@ -4,19 +4,16 @@
   --font-serif: var(--font-playfair);
   --font-sans: var(--font-montserrat);
 
-  --color-background: #0a0a0a;
-  --color-foreground: #e8e8e8;
+  --color-background: #ffffff;
+  --color-foreground: #1a1c1c;
 
-  --color-primary: #C97C9B;
-  --color-primary-foreground: #f5f5f5;
+  --color-primary: #FFB6C1;
+  --color-primary-foreground: #880E4F;
 
-  --color-secondary: #8b6f47;
-  --color-secondary-foreground: #f5f5f5;
+  --color-secondary: #DC143C;
+  --color-secondary-foreground: #FFFFFF;
 
-  --color-nude: #9d7867;
-  --color-nude-dark: #6b5447;
-
-  --color-accent: #1f1f1f;
+  --color-accent: #FEE2E2;
 }
 
 @layer base {

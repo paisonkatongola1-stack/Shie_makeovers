@@ -1,83 +1,78 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Input, Textarea, Button } from "@/components/ui";
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-white">
       <Navbar />
 
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-            <div>
-              <h1 className="text-4xl md:text-6xl font-serif font-bold text-foreground mb-8">Get in Touch</h1>
-              <p className="text-lg font-sans text-foreground/70 mb-12 leading-relaxed">
-                Have a question or want to book a special event? Fill out the form below or reach out to us directly. We'd love to hear from you.
-              </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
+            <div className="space-y-16">
+              <div className="space-y-6">
+                <h1 className="text-5xl md:text-7xl font-serif font-bold text-foreground leading-tight">Get in <br /><span className="text-secondary italic">Touch</span></h1>
+                <p className="text-lg font-sans text-foreground/60 leading-relaxed max-w-md">
+                  Have a question or want to book a special event? Our concierge team is ready to assist you in creating your perfect salon.
+                </p>
+              </div>
 
-              <div className="space-y-8">
-                <div className="flex items-start space-x-6">
-                  <div className="bg-primary/20 p-4 rounded-sm text-primary-foreground">
-                    <MapPin size={24} />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div className="space-y-4">
+                  <div className="text-secondary flex items-center space-x-2">
+                    <MapPin size={18} />
+                    <h3 className="text-[10px] font-sans font-bold uppercase tracking-[0.3em]">Studio</h3>
                   </div>
-                  <div>
-                    <h3 className="text-sm font-sans font-bold uppercase tracking-widest text-foreground mb-2">Location</h3>
-                    <p className="text-foreground/60 leading-relaxed">
-                      Zimbabwe, Harare
-                    </p>
-                  </div>
+                  <p className="text-foreground/60 text-sm leading-relaxed">
+                    123 Elegance Blvd, Suite 100<br />
+                    Beverly Hills, CA 90210
+                  </p>
                 </div>
 
-                <div className="flex items-start space-x-6">
-                  <div className="bg-primary/20 p-4 rounded-sm text-primary-foreground">
-                    <Phone size={24} />
+                <div className="space-y-4">
+                  <div className="text-secondary flex items-center space-x-2">
+                    <Phone size={18} />
+                    <h3 className="text-[10px] font-sans font-bold uppercase tracking-[0.3em]">Direct</h3>
                   </div>
-                  <div>
-                    <h3 className="text-sm font-sans font-bold uppercase tracking-widest text-foreground mb-2">Phone</h3>
-                    <p className="text-foreground/60">+263 719 706 464</p>
-                  </div>
+                  <p className="text-foreground/60 text-sm font-bold">(555) 123-4567</p>
                 </div>
 
-                <div className="flex items-start space-x-6">
-                  <div className="bg-primary/20 p-4 rounded-sm text-primary-foreground">
-                    <Clock size={24} />
+                <div className="space-y-4">
+                  <div className="text-secondary flex items-center space-x-2">
+                    <Mail size={18} />
+                    <h3 className="text-[10px] font-sans font-bold uppercase tracking-[0.3em]">Email</h3>
                   </div>
-                  <div>
-                    <h3 className="text-sm font-sans font-bold uppercase tracking-widest text-foreground mb-2">Hours</h3>
-                    <p className="text-foreground/60">
-                      Mon - Sat: 9:00 AM - 8:00 PM<br />
-                      Sun: 10:00 AM - 6:00 PM
-                    </p>
+                  <p className="text-foreground/60 text-sm">hello@shiemakeovers.com</p>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="text-secondary flex items-center space-x-2">
+                    <Clock size={18} />
+                    <h3 className="text-[10px] font-sans font-bold uppercase tracking-[0.3em]">Hours</h3>
                   </div>
+                  <p className="text-foreground/60 text-sm leading-relaxed">
+                    Mon - Sat: 9 AM - 8 PM<br />
+                    Sun: 10 AM - 6 PM
+                  </p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-accent/10 p-10 md:p-16 rounded-sm">
-              <h3 className="text-2xl font-serif font-bold text-foreground mb-8">Send us a Message</h3>
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40">Name</label>
-                    <input type="text" className="w-full bg-accent border-b border-accent/50 py-4 focus:border-primary outline-none transition-colors" placeholder="Full Name" />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40">Email</label>
-                    <input type="email" className="w-full bg-accent border-b border-accent/50 py-4 focus:border-primary outline-none transition-colors" placeholder="Email Address" />
-                  </div>
+            <div className="bg-accent/30 p-12 md:p-20 rounded-sm border border-secondary/10 shadow-2xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+              <h3 className="text-3xl font-serif font-bold text-foreground mb-10">Send a Message</h3>
+              <form className="space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <Input label="Full Name" placeholder="Your name" />
+                  <Input label="Email Address" type="email" placeholder="email@example.com" />
                 </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40">Subject</label>
-                  <input type="text" className="w-full bg-accent border-b border-accent/50 py-4 focus:border-primary outline-none transition-colors" placeholder="Subject" />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40">Message</label>
-                  <textarea rows={4} className="w-full bg-accent border-b border-accent/50 py-4 focus:border-primary outline-none transition-colors resize-none" placeholder="Your Message"></textarea>
-                </div>
-                <button className="w-full bg-secondary text-secondary-foreground py-5 rounded-sm font-sans font-bold uppercase tracking-[0.2em] text-sm hover:bg-secondary/90 transition-all shadow-lg mt-8">
-                  Send Message
-                </button>
+                <Input label="Subject" placeholder="How can we help?" />
+                <Textarea label="Message" rows={4} placeholder="Your thoughts..." />
+                <Button variant="secondary" size="lg" className="w-full mt-6 shadow-xl">
+                  Send Inquiry
+                </Button>
               </form>
             </div>
           </div>
@@ -85,11 +80,14 @@ export default function ContactPage() {
       </section>
 
       {/* Map Placeholder */}
-      <section className="h-[400px] bg-accent/30 w-full flex items-center justify-center border-t border-accent">
-        <div className="text-center">
-          <MapPin size={48} className="mx-auto text-primary-foreground mb-4 opacity-20" />
-          <p className="text-sm font-sans font-bold uppercase tracking-widest text-foreground/20 italic">Interactive Map View</p>
+      <section className="h-[500px] bg-accent/20 w-full flex items-center justify-center border-y border-accent group cursor-pointer overflow-hidden">
+        <div className="text-center relative z-10 space-y-4">
+          <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto shadow-md group-hover:scale-110 transition-transform duration-700">
+            <MapPin size={32} className="text-secondary" />
+          </div>
+          <p className="text-[10px] font-sans font-bold uppercase tracking-[0.4em] text-foreground/40">Open in Google Maps</p>
         </div>
+        <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
       </section>
 
       <Footer />

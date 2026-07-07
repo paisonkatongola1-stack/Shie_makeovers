@@ -15,35 +15,37 @@ export default function GalleryPage() {
     <main className="min-h-screen">
       <Navbar />
 
-      <section className="py-24">
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-6xl font-serif font-bold text-foreground mb-4">Our Work</h1>
-            <p className="text-lg font-sans text-foreground/60">A showcase of our finest nail artistry and designs.</p>
+            <h1 className="text-4xl md:text-6xl font-serif font-bold text-foreground mb-4">Our Masterpieces</h1>
+            <p className="text-lg font-sans text-foreground/60 max-w-2xl mx-auto">A curated showcase of our finest artistry and bespoke designs crafted with precision and passion.</p>
           </div>
 
           {/* Categories */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
+          <div className="flex flex-wrap justify-center gap-3 mb-16">
             {["All", "Acrylic", "Gel", "French Tips", "Nail Art", "Bridal Nails", "Seasonal"].map((cat) => (
               <button
                 key={cat}
-                className="px-6 py-2 rounded-full border border-accent text-sm font-sans font-medium hover:bg-primary/20 hover:border-primary transition-all uppercase tracking-widest"
+                className="px-6 py-2 rounded-sm border border-secondary/10 text-[10px] font-sans font-bold uppercase tracking-widest hover:bg-secondary hover:text-white transition-all"
               >
                 {cat}
               </button>
             ))}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {galleryImages.map((img) => (
-              <div key={img.id} className="relative aspect-square overflow-hidden group cursor-pointer rounded-sm">
+              <div key={img.id} className="relative aspect-[3/4] overflow-hidden group cursor-pointer rounded-sm shadow-sm border border-accent">
                 <img
                   src={img.url}
                   alt={img.category}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                  <span className="text-white font-sans font-bold uppercase tracking-[0.3em] border-b border-white pb-2">{img.category}</span>
+                <div className="absolute inset-0 bg-secondary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center p-8 text-center">
+                  <span className="text-white font-serif font-bold text-2xl mb-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">{img.category}</span>
+                  <div className="w-12 h-0.5 bg-white/40 mb-6 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 delay-100"></div>
+                  <button className="text-white text-[10px] font-sans font-bold uppercase tracking-[0.3em] border border-white/40 px-6 py-3 hover:bg-white hover:text-secondary transition-all">View Details</button>
                 </div>
               </div>
             ))}
