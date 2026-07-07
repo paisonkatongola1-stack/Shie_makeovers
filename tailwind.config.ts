@@ -1,0 +1,38 @@
+import type { Config } from "tailwindcss";
+
+const config: Config = {
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        primary: {
+          DEFAULT: "#F4C2C2", // Blush Pink
+          foreground: "#7B5455",
+        },
+        secondary: {
+          DEFAULT: "#D4AF37", // Gold
+          foreground: "#FFFFFF",
+        },
+        nude: {
+          DEFAULT: "#E3C4B8",
+          dark: "#CBA498",
+        },
+        accent: {
+          DEFAULT: "#F2F2F2", // Light Gray
+        }
+      },
+      fontFamily: {
+        serif: ["var(--font-playfair)", "serif"],
+        sans: ["var(--font-montserrat)", "sans-serif"],
+      },
+    },
+  },
+  plugins: [],
+};
+export default config;

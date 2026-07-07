@@ -1,0 +1,167 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  ADMIN
+  STAFF
+  CUSTOMER
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+enum PaymentMethod {
+  STRIPE
+  PAYPAL
+  CASH
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  role          UserRole  @default(CUSTOMER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  customer      Customer?
+  staff         Staff?
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Customer {
+  id        String    @id @default(cuid())
+  userId    String    @unique
+  phone     String?
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bookings  Booking[]
+  reviews   Review[]
+}
+
+model Staff {
+  id           String    @id @default(cuid())
+  userId       String    @unique
+  bio          String?   @db.Text
+  skills       String[]
+  workingHours Json?     // Store structured working hours
+  vacationDates DateTime[]
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bookings     Booking[]
+}
+
+model Service {
+  id          String    @id @default(cuid())
+  name        String
+  description String?   @db.Text
+  duration    Int       // In minutes
+  price       Float
+  image       String?
+  isActive    Boolean   @default(true)
+  bookings    Booking[]
+}
+
+model Booking {
+  id           String        @id @default(cuid())
+  customerId   String
+  staffId      String
+  serviceId    String
+  startTime    DateTime
+  endTime      DateTime
+  status       BookingStatus @default(PENDING)
+  notes        String?       @db.Text
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  customer     Customer      @relation(fields: [customerId], references: [id])
+  staff        Staff         @relation(fields: [staffId], references: [id])
+  service      Service       @relation(fields: [serviceId], references: [id])
+  payment      Payment?
+}
+
+model Payment {
+  id            String        @id @default(cuid())
+  bookingId     String        @unique
+  amount        Float
+  status        PaymentStatus @default(PENDING)
+  method        PaymentMethod
+  transactionId String?
+  createdAt     DateTime      @default(now())
+
+  booking       Booking       @relation(fields: [bookingId], references: [id])
+}
+
+model Review {
+  id         String   @id @default(cuid())
+  customerId String
+  rating     Int
+  comment    String?  @db.Text
+  images     String[]
+  createdAt  DateTime @default(now())
+
+  customer   Customer @relation(fields: [customerId], references: [id])
+}
+
+model GalleryImage {
+  id          String   @id @default(cuid())
+  url         String
+  category    String
+  description String?
+  createdAt   DateTime @default(now())
+}
+
+model BusinessSettings {
+  id            String @id @default("default")
+  name          String @default("Shie MakeOvers")
+  address       String?
+  phone         String?
+  email         String?
+  openingHours  Json?
+  closedDates   DateTime[]
+}
