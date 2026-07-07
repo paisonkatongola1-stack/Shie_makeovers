@@ -28,20 +28,20 @@ interface BookingData {
   email: string;
   phone: string;
   notes: string;
+  rating: number;
+  reviewComment: string;
+  reviewImages: string[];
 }
 
 const services: Service[] = [
-  { id: "1", name: "Classic Manicure", duration: 30, price: 25 },
-  { id: "2", name: "Gel Manicure", duration: 45, price: 45 },
-  { id: "3", name: "Acrylic Full Set", duration: 90, price: 65 },
-  { id: "4", name: "Nail Art", duration: 30, price: 15 },
-  { id: "5", name: "Deluxe Pedicure", duration: 60, price: 55 },
+  { id: "1", name: "Stick On", duration: 15, price: 5 },
+  { id: "2", name: "Naturals", duration: 30, price: 5 },
+  { id: "3", name: "Gel Up", duration: 45, price: 5 },
+  { id: "4", name: "Clusters", duration: 60, price: 5 },
 ];
 
 const staff: Staff[] = [
-  { id: "1", name: "Elena Rossi", role: "Master Technician" },
-  { id: "2", name: "Sarah Chen", role: "Nail Art Specialist" },
-  { id: "3", name: "Maya Williams", role: "Pedicure Expert" },
+  { id: "1", name: "Ashleigh", role: "Owner & Technician" },
 ];
 
 const timeSlots = [
@@ -60,7 +60,10 @@ export default function BookingPage() {
     name: "",
     email: "",
     phone: "",
-    notes: ""
+    notes: "",
+    rating: 0,
+    reviewComment: "",
+    reviewImages: []
   });
 
   const nextStep = () => setStep(step + 1);
@@ -128,7 +131,7 @@ export default function BookingPage() {
                   <label className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40 block mb-3">Pick a Date</label>
                   <input
                     type="date"
-                    className="w-full bg-white border border-accent p-4 outline-none focus:border-primary rounded-sm"
+                    className="w-full bg-accent border border-accent/50 p-4 outline-none focus:border-primary rounded-sm"
                     onChange={(e) => setBookingData({...bookingData, date: e.target.value})}
                   />
                 </div>
@@ -199,14 +202,126 @@ export default function BookingPage() {
           </div>
         );
       case 5:
+        const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+          if (e.target.files) {
+            const files = Array.from(e.target.files);
+            files.forEach((file) => {
+              const reader = new FileReader();
+              reader.onloadend = () => {
+                setBookingData((prev) => ({
+                  ...prev,
+                  reviewImages: [...prev.reviewImages, reader.result as string]
+                }));
+              };
+              reader.readAsDataURL(file);
+            });
+          }
+        };
+
+        const removeImage = (index: number) => {
+          setBookingData((prev) => ({
+            ...prev,
+            reviewImages: prev.reviewImages.filter((_, i) => i !== index)
+          }));
+        };
+
+        return (
+          <div className="space-y-8">
+            <h2 className="text-2xl font-serif font-bold text-foreground">Rate Your Experience</h2>
+            
+            {/* Rating Stars */}
+            <div className="space-y-4">
+              <label className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40 block">How would you rate our service?</label>
+              <div className="flex gap-4">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <button
+                    key={star}
+                    onClick={() => setBookingData({...bookingData, rating: star})}
+                    className="text-4xl transition-transform hover:scale-110"
+                  >
+                    {bookingData.rating >= star ? '⭐' : '☆'}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Review Comment */}
+            <div className="space-y-2">
+              <label className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40">Your Review (Optional)</label>
+              <textarea 
+                className="w-full border border-accent p-4 focus:border-primary outline-none rounded-sm resize-none" 
+                rows={4} 
+                placeholder="Tell us what you loved about your experience..."
+                value={bookingData.reviewComment}
+                onChange={(e) => setBookingData({...bookingData, reviewComment: e.target.value})}
+              />
+            </div>
+
+            {/* Image Upload */}
+            <div className="space-y-4">
+              <label className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40 block">Upload Photos (Optional, Unlimited)</label>
+              <div className="border-2 border-dashed border-primary rounded-sm p-8 text-center hover:bg-primary/5 transition-colors">
+                <input 
+                  type="file"
+                  multiple
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="hidden"
+                  id="image-upload"
+                />
+                <label htmlFor="image-upload" className="cursor-pointer block">
+                  <div className="text-primary text-3xl mb-2">📸</div>
+                  <p className="text-sm font-sans text-foreground/60">Click to upload or drag images here</p>
+                  <p className="text-xs font-sans text-foreground/40 mt-1">Upload as many photos as you'd like</p>
+                </label>
+              </div>
+
+              {/* Display Uploaded Images */}
+              {bookingData.reviewImages.length > 0 && (
+                <div className="space-y-4">
+                  <p className="text-sm font-sans font-bold text-foreground">{bookingData.reviewImages.length} image{bookingData.reviewImages.length !== 1 ? 's' : ''} uploaded</p>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    {bookingData.reviewImages.map((image, index) => (
+                      <div key={index} className="relative group">
+                        <img 
+                          src={image} 
+                          alt={`Review ${index + 1}`}
+                          className="w-full h-32 object-cover rounded-sm border border-accent"
+                        />
+                        <button
+                          onClick={() => removeImage(index)}
+                          className="absolute top-2 right-2 bg-secondary text-secondary-foreground rounded-full w-6 h-6 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="flex justify-between items-center pt-6">
+              <button onClick={prevStep} className="text-xs font-sans font-bold uppercase tracking-widest text-foreground/40 hover:text-foreground">Back</button>
+              <button
+                disabled={bookingData.rating === 0}
+                onClick={nextStep}
+                className="bg-primary text-primary-foreground px-10 py-4 rounded-sm text-xs font-sans font-bold uppercase tracking-widest disabled:opacity-50"
+              >
+                Continue
+              </button>
+            </div>
+          </div>
+        );
+      case 6:
         return (
           <div className="text-center py-10 space-y-8">
             <div className="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center mx-auto">
               <Check size={40} />
             </div>
             <div>
-              <h2 className="text-3xl font-serif font-bold text-foreground mb-2">Booking Confirmed!</h2>
-              <p className="text-foreground/60 font-sans">Thank you, {bookingData.name}. Your appointment is all set.</p>
+              <h2 className="text-3xl font-serif font-bold text-foreground mb-2">Booking & Review Complete!</h2>
+              <p className="text-foreground/60 font-sans">Thank you, {bookingData.name}. Your appointment is confirmed and we received your review and photos!</p>
             </div>
             <div className="bg-accent/10 p-8 rounded-sm text-left max-w-md mx-auto space-y-4">
               <div className="flex justify-between">
@@ -236,11 +351,11 @@ export default function BookingPage() {
 
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white p-8 md:p-12 shadow-xl border border-accent rounded-sm">
+          <div className="bg-accent p-8 md:p-12 shadow-xl border border-accent/50 rounded-sm">
             {/* Progress Bar */}
-            {step < 5 && (
+            {step < 6 && (
               <div className="flex justify-between mb-16">
-                {[1, 2, 3, 4].map((s) => (
+                {[1, 2, 3, 4, 5].map((s) => (
                   <div key={s} className="flex flex-col items-center flex-1 relative">
                     <div className={cn(
                       "w-10 h-10 rounded-full flex items-center justify-center font-sans font-bold text-xs z-10 transition-colors duration-500",
@@ -248,7 +363,7 @@ export default function BookingPage() {
                     )}>
                       {step > s ? <Check size={16} /> : s}
                     </div>
-                    {s < 4 && (
+                    {s < 5 && (
                       <div className={cn(
                         "absolute top-5 left-1/2 w-full h-[1px] -z-0",
                         step > s ? "bg-primary" : "bg-accent"

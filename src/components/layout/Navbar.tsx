@@ -14,10 +14,11 @@ const Navbar = () => {
     { name: "Gallery", href: "/gallery" },
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
+    { name: "Admin", href: "/admin" },
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-accent">
+    <nav className="sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b border-accent/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <div className="flex-shrink-0 flex items-center">
@@ -66,7 +67,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div
         className={cn(
-          "md:hidden absolute w-full bg-white border-b border-accent transition-all duration-300 ease-in-out",
+          "md:hidden absolute w-full bg-background border-b border-accent/50 transition-all duration-300 ease-in-out",
           isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 overflow-hidden"
         )}
       >

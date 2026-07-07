@@ -16,7 +16,7 @@ export default function Home() {
       <Hero />
 
       {/* Featured Services */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-accent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-xs font-sans font-bold uppercase tracking-[0.3em] text-primary-foreground mb-4">Our Specialities</h2>
@@ -62,7 +62,7 @@ export default function Home() {
               { name: "Emily R.", text: "A truly luxurious experience. I felt like a queen from the moment I walked in." },
               { name: "Jessica M.", text: "Incredible nail art! I always get so many compliments on my nails after visiting." }
             ].map((t, idx) => (
-              <div key={idx} className="bg-white p-10 rounded-sm border border-accent shadow-sm italic">
+              <div key={idx} className="bg-background border-2 border-accent p-10 rounded-sm shadow-sm italic">
                 <div className="flex mb-4 text-secondary">
                   {[1,2,3,4,5].map(i => <Star key={i} size={16} fill="currentColor" />)}
                 </div>
@@ -75,7 +75,7 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-accent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 text-center">
             {[

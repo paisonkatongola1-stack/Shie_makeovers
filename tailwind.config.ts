@@ -12,19 +12,16 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: {
-          DEFAULT: "#F4C2C2", // Blush Pink
-          foreground: "#7B5455",
+          DEFAULT: "#C97C9B", // Deep Mauve
+          foreground: "#f5f5f5",
         },
         secondary: {
-          DEFAULT: "#D4AF37", // Gold
-          foreground: "#FFFFFF",
-        },
-        nude: {
-          DEFAULT: "#E3C4B8",
-          dark: "#CBA498",
+          DEFAULT: "#8b6f47", // Deep Gold
+          foreground: "#f5f5f5",
         },
         accent: {
-          DEFAULT: "#F2F2F2", // Light Gray
+          DEFAULT: "#1f1f1f", // Dark Gray
+          dark: "#0a0a0a",
         }
       },
       fontFamily: {

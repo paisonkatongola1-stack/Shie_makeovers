@@ -24,8 +24,7 @@ export default function ContactPage() {
                   <div>
                     <h3 className="text-sm font-sans font-bold uppercase tracking-widest text-foreground mb-2">Location</h3>
                     <p className="text-foreground/60 leading-relaxed">
-                      123 Elegance Blvd, Suite 100<br />
-                      Beverly Hills, CA 90210
+                      Zimbabwe, Harare
                     </p>
                   </div>
                 </div>
@@ -36,17 +35,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="text-sm font-sans font-bold uppercase tracking-widest text-foreground mb-2">Phone</h3>
-                    <p className="text-foreground/60">(555) 123-4567</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-6">
-                  <div className="bg-primary/20 p-4 rounded-sm text-primary-foreground">
-                    <Mail size={24} />
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-sans font-bold uppercase tracking-widest text-foreground mb-2">Email</h3>
-                    <p className="text-foreground/60">hello@shiemakeovers.com</p>
+                    <p className="text-foreground/60">+263 719 706 464</p>
                   </div>
                 </div>
 
@@ -71,20 +60,20 @@ export default function ContactPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40">Name</label>
-                    <input type="text" className="w-full bg-white border-b border-accent py-4 focus:border-secondary outline-none transition-colors" placeholder="Full Name" />
+                    <input type="text" className="w-full bg-accent border-b border-accent/50 py-4 focus:border-primary outline-none transition-colors" placeholder="Full Name" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40">Email</label>
-                    <input type="email" className="w-full bg-white border-b border-accent py-4 focus:border-secondary outline-none transition-colors" placeholder="Email Address" />
+                    <input type="email" className="w-full bg-accent border-b border-accent/50 py-4 focus:border-primary outline-none transition-colors" placeholder="Email Address" />
                   </div>
                 </div>
                 <div className="space-y-2">
                   <label className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40">Subject</label>
-                  <input type="text" className="w-full bg-white border-b border-accent py-4 focus:border-secondary outline-none transition-colors" placeholder="Subject" />
+                  <input type="text" className="w-full bg-accent border-b border-accent/50 py-4 focus:border-primary outline-none transition-colors" placeholder="Subject" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40">Message</label>
-                  <textarea rows={4} className="w-full bg-white border-b border-accent py-4 focus:border-secondary outline-none transition-colors resize-none" placeholder="Your Message"></textarea>
+                  <textarea rows={4} className="w-full bg-accent border-b border-accent/50 py-4 focus:border-primary outline-none transition-colors resize-none" placeholder="Your Message"></textarea>
                 </div>
                 <button className="w-full bg-secondary text-secondary-foreground py-5 rounded-sm font-sans font-bold uppercase tracking-[0.2em] text-sm hover:bg-secondary/90 transition-all shadow-lg mt-8">
                   Send Message

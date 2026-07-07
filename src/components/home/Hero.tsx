@@ -7,9 +7,9 @@ const Hero = () => {
   return (
     <section className="relative h-[90vh] flex items-center overflow-hidden">
       {/* Background with soft gradient/texture */}
-      <div className="absolute inset-0 bg-[#fdf2f2] z-0">
+      <div className="absolute inset-0 bg-slate-900/95 z-0">
         <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/20 to-transparent"></div>
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-secondary/20 to-transparent"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -48,7 +48,7 @@ const Hero = () => {
             </Link>
             <Link
               href="/services"
-              className="bg-white text-foreground border border-accent px-10 py-4 rounded-sm font-sans font-bold uppercase tracking-[0.2em] text-sm hover:bg-accent/50 transition-all text-center"
+              className="bg-accent text-foreground border border-accent/50 px-10 py-4 rounded-sm font-sans font-bold uppercase tracking-[0.2em] text-sm hover:bg-accent/80 transition-all text-center"
             >
               View Services
             </Link>
