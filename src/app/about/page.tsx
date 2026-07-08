@@ -31,7 +31,7 @@ export default function AboutPage() {
 
               <div className="space-y-6 text-lg font-sans text-foreground/70 leading-relaxed max-w-xl">
                 <p>
-                  Founded in 2020, Shie MakeOvers was born out of a desire to create a space where beauty meets relaxation. We believe that nail care is more than just a service—it's a form of self-expression and self-care.
+                  Founded in 2020, Shie MakeOvers was born out of a desire to create a space where beauty meets relaxation. We believe that nail care is more than just a service—it&apos;s a form of self-expression and self-care.
                 </p>
                 <p>
                   Our mission is to provide an unparalleled experience through meticulous attention to detail, the use of premium products, and a commitment to hygiene and professional care. Each of our technicians is a master of their craft, dedicated to bringing your vision to life.
