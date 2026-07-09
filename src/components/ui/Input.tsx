@@ -7,15 +7,20 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ className, label, error, ...props }, ref) => {
+  ({ className, label, error, id, ...props }, ref) => {
+    const inputId = id || (label ? label.toLowerCase().replace(/\s+/g, "-") : undefined);
     return (
       <div className="w-full space-y-2">
         {label && (
-          <label className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40 block">
+          <label
+            htmlFor={inputId}
+            className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40 block"
+          >
             {label}
           </label>
         )}
         <input
+          id={inputId}
           ref={ref}
           className={cn(
             "w-full bg-white border-b border-accent py-4 focus:border-primary outline-none transition-colors placeholder:text-foreground/20",
@@ -38,15 +43,20 @@ interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement
 }
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, label, error, ...props }, ref) => {
+  ({ className, label, error, id, ...props }, ref) => {
+    const textareaId = id || (label ? label.toLowerCase().replace(/\s+/g, "-") : undefined);
     return (
       <div className="w-full space-y-2">
         {label && (
-          <label className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40 block">
+          <label
+            htmlFor={textareaId}
+            className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40 block"
+          >
             {label}
           </label>
         )}
         <textarea
+          id={textareaId}
           ref={ref}
           className={cn(
             "w-full bg-white border-b border-accent py-4 focus:border-primary outline-none transition-colors resize-none placeholder:text-foreground/20",
