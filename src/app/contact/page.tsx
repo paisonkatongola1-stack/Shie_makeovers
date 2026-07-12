@@ -65,11 +65,11 @@ export default function ContactPage() {
               <h3 className="text-3xl font-serif font-bold text-foreground mb-10">Send a Message</h3>
               <form className="space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <Input label="Full Name" placeholder="Your name" />
-                  <Input label="Email Address" type="email" placeholder="email@example.com" />
+                  <Input id="full-name" label="Full Name" placeholder="Your name" />
+                  <Input id="email-address" label="Email Address" type="email" placeholder="email@example.com" />
                 </div>
-                <Input label="Subject" placeholder="How can we help?" />
-                <Textarea label="Message" rows={4} placeholder="Your thoughts..." />
+                <Input id="subject" label="Subject" placeholder="How can we help?" />
+                <Textarea id="message" label="Message" rows={4} placeholder="Your thoughts..." />
                 <Button variant="secondary" size="lg" className="w-full mt-6 shadow-xl">
                   Send Inquiry
                 </Button>
