@@ -184,7 +184,7 @@ export default function BookingPage() {
             </div>
             <div>
               <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">Booking Confirmed!</h2>
-              <p className="text-foreground/60 font-sans max-w-md mx-auto">Thank you, {bookingData.name}. Your appointment is reserved. We've sent a confirmation email to {bookingData.email}.</p>
+              <p className="text-foreground/60 font-sans max-w-md mx-auto">Thank you, {bookingData.name}. Your appointment is reserved. We&apos;ve sent a confirmation email to {bookingData.email}.</p>
             </div>
             <div className="bg-white border border-accent p-10 rounded-sm text-left max-w-md mx-auto space-y-6 shadow-xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-2 h-full bg-secondary"></div>
