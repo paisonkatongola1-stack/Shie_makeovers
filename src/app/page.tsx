@@ -68,8 +68,8 @@ export default function Home() {
                 <div className="flex mb-4 text-secondary">
                   {[1,2,3,4,5].map(i => <Star key={i} size={16} fill="currentColor" />)}
                 </div>
-                <p className="text-foreground/70 mb-6 leading-relaxed">"{t.text}"</p>
-                <p className="text-xs font-sans font-bold uppercase tracking-widest text-foreground">— {t.name}</p>
+                <p className="text-foreground/70 mb-6 leading-relaxed">&quot;{t.text}&quot;</p>
+                <p className="text-xs font-sans font-bold uppercase tracking-widest text-foreground">&mdash; {t.name}</p>
                 <div className="absolute top-0 right-0 w-2 h-full bg-primary/20"></div>
               </div>
             ))}
