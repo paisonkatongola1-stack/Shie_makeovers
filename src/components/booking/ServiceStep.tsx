@@ -1,4 +1,3 @@
-import { Card, CardHeader, CardContent, Button } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
 interface Service {
@@ -37,7 +36,7 @@ export const ServiceStep = ({ services, selectedId, onSelect }: ServiceStepProps
               <p className="font-serif font-bold text-xl group-hover:text-secondary transition-colors">{s.name}</p>
               <p className="text-xs font-sans text-foreground/40 uppercase tracking-widest mt-1 font-medium">{s.duration} mins</p>
             </div>
-            <p className="font-serif font-bold text-2xl text-secondary">\${s.price}</p>
+            <p className="font-serif font-bold text-2xl text-secondary">${s.price}</p>
           </button>
         ))}
       </div>
