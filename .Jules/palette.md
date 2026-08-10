@@ -1,0 +1,3 @@
+## 2026-08-10 - Dynamic Form Label Associations & Accessible Selection Groups
+**Learning:** Hardcoded IDs across reusable input elements create duplicate DOM ID collisions, breaking accessibility. Using React's dynamic `useId` provides unique, robust input-label linkage. Additionally, custom select grids (like calendar time slots) benefit tremendously from ARIA group roles (`role="group"`) and dynamic state tracking (`aria-pressed`).
+**Action:** Always link reusable form inputs with unique generated IDs and ensure custom interactive lists are wrapped in properly described containers with explicit state attributes.
