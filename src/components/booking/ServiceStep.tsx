@@ -1,4 +1,3 @@
-import { Card, CardHeader, CardContent, Button } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
 interface Service {
@@ -21,13 +20,15 @@ export const ServiceStep = ({ services, selectedId, onSelect }: ServiceStepProps
         <h2 className="text-3xl font-serif font-bold text-foreground">Select a Service</h2>
         <p className="text-foreground/40 font-sans text-sm uppercase tracking-widest mt-2 font-bold">Step 1 of 4</p>
       </div>
-      <div className="grid gap-6">
+      <div className="grid gap-6" role="group" aria-label="Select a beauty service">
         {services.map((s) => (
           <button
             key={s.id}
+            type="button"
             onClick={() => onSelect(s)}
+            aria-pressed={selectedId === s.id}
             className={cn(
-              "flex justify-between items-center p-8 border rounded-sm transition-all text-left group",
+              "flex justify-between items-center p-8 border rounded-sm transition-all text-left group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary",
               selectedId === s.id
                 ? "border-secondary bg-secondary/5 ring-1 ring-secondary"
                 : "border-accent hover:border-secondary/30 bg-white"
@@ -37,7 +38,7 @@ export const ServiceStep = ({ services, selectedId, onSelect }: ServiceStepProps
               <p className="font-serif font-bold text-xl group-hover:text-secondary transition-colors">{s.name}</p>
               <p className="text-xs font-sans text-foreground/40 uppercase tracking-widest mt-1 font-medium">{s.duration} mins</p>
             </div>
-            <p className="font-serif font-bold text-2xl text-secondary">\${s.price}</p>
+            <p className="font-serif font-bold text-2xl text-secondary">${s.price}</p>
           </button>
         ))}
       </div>
