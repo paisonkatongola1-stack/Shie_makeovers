@@ -85,24 +85,27 @@ export default function BookingPage() {
              </div>
              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div className="space-y-4">
-                  <label className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40 flex items-center">
+                  <label htmlFor="booking-date-input" className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40 flex items-center cursor-pointer">
                     <CalendarIcon size={14} className="mr-2" /> Select Date
                   </label>
                   <input
+                    id="booking-date-input"
                     type="date"
                     className="w-full bg-white border border-accent p-6 outline-none focus:border-secondary focus:ring-1 focus:ring-secondary rounded-sm font-sans"
                     onChange={(e) => setBookingData({...bookingData, date: e.target.value})}
                   />
                 </div>
                 <div className="space-y-4">
-                  <label className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40 flex items-center">
+                  <span className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40 flex items-center">
                     <ClockIcon size={14} className="mr-2" /> Select Time
-                  </label>
-                  <div className="grid grid-cols-2 gap-3">
+                  </span>
+                  <div className="grid grid-cols-2 gap-3" role="group" aria-label="Available Time Slots">
                     {timeSlots.map((time) => (
                       <button
                         key={time}
+                        type="button"
                         onClick={() => setBookingData({...bookingData, time})}
+                        aria-pressed={bookingData.time === time}
                         className={cn(
                           "py-4 border text-[10px] font-sans font-bold rounded-sm transition-all uppercase tracking-widest",
                           bookingData.time === time
@@ -184,7 +187,7 @@ export default function BookingPage() {
             </div>
             <div>
               <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">Booking Confirmed!</h2>
-              <p className="text-foreground/60 font-sans max-w-md mx-auto">Thank you, {bookingData.name}. Your appointment is reserved. We've sent a confirmation email to {bookingData.email}.</p>
+              <p className="text-foreground/60 font-sans max-w-md mx-auto">Thank you, {bookingData.name}. Your appointment is reserved. We&apos;ve sent a confirmation email to {bookingData.email}.</p>
             </div>
             <div className="bg-white border border-accent p-10 rounded-sm text-left max-w-md mx-auto space-y-6 shadow-xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-2 h-full bg-secondary"></div>

@@ -31,7 +31,7 @@ export function isValidAppointmentTime(time: string, dayOfWeek: string, hours: O
   // Simple time comparison helper
   const parseTime = (t: string) => {
     const [timePart, modifier] = t.split(" ");
-    let [hoursStr, minutesStr] = timePart.split(":");
+    const [hoursStr, minutesStr] = timePart.split(":");
     let hoursNum = parseInt(hoursStr, 10);
     if (modifier === "PM" && hoursNum < 12) hoursNum += 12;
     if (modifier === "AM" && hoursNum === 12) hoursNum = 0;
