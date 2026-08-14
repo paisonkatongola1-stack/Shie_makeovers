@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useId } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Check, Calendar as CalendarIcon, Clock as ClockIcon } from "lucide-react";
@@ -55,6 +55,7 @@ const timeSlots = [
 ];
 
 export default function BookingPage() {
+  const dateInputId = useId();
   const [step, setStep] = useState(1);
   const [bookingData, setBookingData] = useState<BookingData>({
     service: null,
@@ -85,24 +86,33 @@ export default function BookingPage() {
              </div>
              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div className="space-y-4">
-                  <label className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40 flex items-center">
+                  <label
+                    htmlFor={dateInputId}
+                    className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40 flex items-center"
+                  >
                     <CalendarIcon size={14} className="mr-2" /> Select Date
                   </label>
                   <input
+                    id={dateInputId}
                     type="date"
                     className="w-full bg-white border border-accent p-6 outline-none focus:border-secondary focus:ring-1 focus:ring-secondary rounded-sm font-sans"
                     onChange={(e) => setBookingData({...bookingData, date: e.target.value})}
                   />
                 </div>
                 <div className="space-y-4">
-                  <label className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40 flex items-center">
+                  <span className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40 flex items-center">
                     <ClockIcon size={14} className="mr-2" /> Select Time
-                  </label>
-                  <div className="grid grid-cols-2 gap-3">
+                  </span>
+                  <div
+                    role="group"
+                    aria-label="Available appointment times"
+                    className="grid grid-cols-2 gap-3"
+                  >
                     {timeSlots.map((time) => (
                       <button
                         key={time}
                         onClick={() => setBookingData({...bookingData, time})}
+                        aria-pressed={bookingData.time === time}
                         className={cn(
                           "py-4 border text-[10px] font-sans font-bold rounded-sm transition-all uppercase tracking-widest",
                           bookingData.time === time
@@ -184,7 +194,7 @@ export default function BookingPage() {
             </div>
             <div>
               <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">Booking Confirmed!</h2>
-              <p className="text-foreground/60 font-sans max-w-md mx-auto">Thank you, {bookingData.name}. Your appointment is reserved. We've sent a confirmation email to {bookingData.email}.</p>
+              <p className="text-foreground/60 font-sans max-w-md mx-auto">Thank you, {bookingData.name}. Your appointment is reserved. We&apos;ve sent a confirmation email to {bookingData.email}.</p>
             </div>
             <div className="bg-white border border-accent p-10 rounded-sm text-left max-w-md mx-auto space-y-6 shadow-xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-2 h-full bg-secondary"></div>
