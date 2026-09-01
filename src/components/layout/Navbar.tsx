@@ -41,18 +41,25 @@ const Navbar = () => {
             <Link href="/book">
               <Button variant="secondary" size="sm">Book Now</Button>
             </Link>
-            <button className="text-foreground/70 hover:text-secondary transition-colors">
+            <button
+              aria-label="Shopping bag"
+              className="text-foreground/70 hover:text-secondary transition-colors"
+            >
               <ShoppingBag size={20} />
             </button>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-4">
-             <button className="text-foreground/70 hover:text-secondary transition-colors">
+             <button
+              aria-label="Shopping bag"
+              className="text-foreground/70 hover:text-secondary transition-colors"
+            >
               <ShoppingBag size={20} />
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
               className="text-foreground/70 hover:text-secondary transition-colors"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}

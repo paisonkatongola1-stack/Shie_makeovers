@@ -11,7 +11,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="w-full space-y-2">
         {label && (
-          <label className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40 block">
+          <label
+            htmlFor={props.id}
+            className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40 block"
+          >
             {label}
           </label>
         )}
@@ -42,7 +45,10 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     return (
       <div className="w-full space-y-2">
         {label && (
-          <label className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40 block">
+          <label
+            htmlFor={props.id}
+            className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40 block"
+          >
             {label}
           </label>
         )}
