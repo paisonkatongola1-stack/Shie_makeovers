@@ -56,6 +56,7 @@ const timeSlots = [
 
 export default function BookingPage() {
   const [step, setStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [bookingData, setBookingData] = useState<BookingData>({
     service: null,
     staff: null,
@@ -69,6 +70,14 @@ export default function BookingPage() {
 
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
+
+  const handleConfirmBooking = async () => {
+    setIsSubmitting(true);
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    setIsSubmitting(false);
+    nextStep();
+  };
 
   const renderStep = () => {
     switch(step) {
@@ -155,19 +164,50 @@ export default function BookingPage() {
             </div>
 
             <form className="space-y-6">
-              <Input label="Full Name" placeholder="Jane Doe" onChange={(e) => setBookingData({...bookingData, name: e.target.value})} />
+              <Input
+                id="name"
+                label="Full Name"
+                placeholder="Jane Doe"
+                onChange={(e) => setBookingData({...bookingData, name: e.target.value})}
+              />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Input label="Email" type="email" placeholder="jane@example.com" onChange={(e) => setBookingData({...bookingData, email: e.target.value})} />
-                <Input label="Phone" type="tel" placeholder="(555) 000-0000" onChange={(e) => setBookingData({...bookingData, phone: e.target.value})} />
+                <Input
+                  id="email"
+                  label="Email"
+                  type="email"
+                  placeholder="jane@example.com"
+                  onChange={(e) => setBookingData({...bookingData, email: e.target.value})}
+                />
+                <Input
+                  id="phone"
+                  label="Phone"
+                  type="tel"
+                  placeholder="(555) 000-0000"
+                  onChange={(e) => setBookingData({...bookingData, phone: e.target.value})}
+                />
               </div>
-              <Textarea label="Special Notes (Optional)" rows={2} placeholder="Any specific requests?" onChange={(e) => setBookingData({...bookingData, notes: e.target.value})} />
+              <Textarea
+                id="notes"
+                label="Special Notes (Optional)"
+                rows={2}
+                placeholder="Any specific requests?"
+                onChange={(e) => setBookingData({...bookingData, notes: e.target.value})}
+              />
             </form>
 
             <div className="flex justify-between items-center pt-10 border-t border-accent">
-                <button onClick={prevStep} className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40 hover:text-secondary transition-colors">Back</button>
+                <button
+                  type="button"
+                  onClick={prevStep}
+                  disabled={isSubmitting}
+                  className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40 hover:text-secondary transition-colors disabled:opacity-50"
+                >
+                  Back
+                </button>
                 <Button
                   disabled={!bookingData.name || !bookingData.email || !bookingData.phone}
-                  onClick={nextStep}
+                  isLoading={isSubmitting}
+                  onClick={handleConfirmBooking}
                   variant="secondary"
                   size="lg"
                 >
@@ -184,7 +224,7 @@ export default function BookingPage() {
             </div>
             <div>
               <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">Booking Confirmed!</h2>
-              <p className="text-foreground/60 font-sans max-w-md mx-auto">Thank you, {bookingData.name}. Your appointment is reserved. We've sent a confirmation email to {bookingData.email}.</p>
+              <p className="text-foreground/60 font-sans max-w-md mx-auto">Thank you, {bookingData.name}. Your appointment is reserved. We&apos;ve sent a confirmation email to {bookingData.email}.</p>
             </div>
             <div className="bg-white border border-accent p-10 rounded-sm text-left max-w-md mx-auto space-y-6 shadow-xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-2 h-full bg-secondary"></div>
