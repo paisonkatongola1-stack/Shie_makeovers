@@ -56,6 +56,7 @@ const timeSlots = [
 
 export default function BookingPage() {
   const [step, setStep] = useState(1);
+  const [isConfirming, setIsConfirming] = useState(false);
   const [bookingData, setBookingData] = useState<BookingData>({
     service: null,
     staff: null,
@@ -69,6 +70,14 @@ export default function BookingPage() {
 
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
+
+  const handleConfirm = async () => {
+    setIsConfirming(true);
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    setIsConfirming(false);
+    nextStep();
+  };
 
   const renderStep = () => {
     switch(step) {
@@ -167,7 +176,8 @@ export default function BookingPage() {
                 <button onClick={prevStep} className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-foreground/40 hover:text-secondary transition-colors">Back</button>
                 <Button
                   disabled={!bookingData.name || !bookingData.email || !bookingData.phone}
-                  onClick={nextStep}
+                  isLoading={isConfirming}
+                  onClick={handleConfirm}
                   variant="secondary"
                   size="lg"
                 >
@@ -184,7 +194,7 @@ export default function BookingPage() {
             </div>
             <div>
               <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">Booking Confirmed!</h2>
-              <p className="text-foreground/60 font-sans max-w-md mx-auto">Thank you, {bookingData.name}. Your appointment is reserved. We've sent a confirmation email to {bookingData.email}.</p>
+              <p className="text-foreground/60 font-sans max-w-md mx-auto">Thank you, {bookingData.name}. Your appointment is reserved. We&apos;ve sent a confirmation email to {bookingData.email}.</p>
             </div>
             <div className="bg-white border border-accent p-10 rounded-sm text-left max-w-md mx-auto space-y-6 shadow-xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-2 h-full bg-secondary"></div>
