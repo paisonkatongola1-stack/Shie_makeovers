@@ -60,7 +60,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { name: "Sarah L.", text: "The best manicure I've ever had. The attention to detail at Shie MakeOvers is truly unmatched." },
+              { name: "Sarah L.", text: "The best manicure I&apos;ve ever had. The attention to detail at Shie MakeOvers is truly unmatched." },
               { name: "Emily R.", text: "A truly premium experience. I felt like a queen from the moment I walked in." },
               { name: "Jessica M.", text: "Incredible nail art! I always get so many compliments on my nails after visiting." }
             ].map((t, idx) => (
@@ -68,8 +68,8 @@ export default function Home() {
                 <div className="flex mb-4 text-secondary">
                   {[1,2,3,4,5].map(i => <Star key={i} size={16} fill="currentColor" />)}
                 </div>
-                <p className="text-foreground/70 mb-6 leading-relaxed">"{t.text}"</p>
-                <p className="text-xs font-sans font-bold uppercase tracking-widest text-foreground">— {t.name}</p>
+                <p className="text-foreground/70 mb-6 leading-relaxed">&quot;{t.text}&quot;</p>
+                <p className="text-xs font-sans font-bold uppercase tracking-widest text-foreground">&mdash; {t.name}</p>
                 <div className="absolute top-0 right-0 w-2 h-full bg-primary/20"></div>
               </div>
             ))}
