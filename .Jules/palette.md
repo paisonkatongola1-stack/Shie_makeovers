@@ -1,0 +1,1 @@
+## 2025-05-14 - [A11y/UX Polish] | **Learning:** Focus indicators and label associations are critical for a truly premium, accessible experience. | **Action:** Always use `focus-visible` and `useId` for form components.
