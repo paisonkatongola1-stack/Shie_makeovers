@@ -18,7 +18,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-accent">
+    <nav aria-label="Main navigation" className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-accent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <div className="flex-shrink-0 flex items-center">
@@ -41,18 +41,27 @@ const Navbar = () => {
             <Link href="/book">
               <Button variant="secondary" size="sm">Book Now</Button>
             </Link>
-            <button className="text-foreground/70 hover:text-secondary transition-colors">
+            <button
+              aria-label="Shopping bag"
+              className="text-foreground/70 hover:text-secondary transition-colors"
+            >
               <ShoppingBag size={20} />
             </button>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-4">
-             <button className="text-foreground/70 hover:text-secondary transition-colors">
+            <button
+              aria-label="Shopping bag"
+              className="text-foreground/70 hover:text-secondary transition-colors"
+            >
               <ShoppingBag size={20} />
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-navigation"
               className="text-foreground/70 hover:text-secondary transition-colors"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -63,6 +72,8 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
+        id="mobile-navigation"
+        aria-label="Mobile navigation"
         className={cn(
           "md:hidden absolute w-full bg-white border-b border-accent transition-all duration-300 ease-in-out",
           isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 overflow-hidden"
